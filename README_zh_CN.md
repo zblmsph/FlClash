@@ -102,12 +102,3 @@ on Mobile:
              dart .\setup.dart	
            ```
 
-## Star History
-
-支持开发者的最简单方式是点击页面顶部的星标（⭐）。
-
-<p style="text-align: center;">
-    <a href="https://api.star-history.com/svg?repos=chen08209/FlClash&Date">
-        <img alt="start" width=50% src="https://api.star-history.com/svg?repos=chen08209/FlClash&Date"/>
-    </a>
-</p>

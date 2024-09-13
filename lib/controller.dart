@@ -8,7 +8,6 @@ import 'package:fl_clash/common/archive.dart';
 import 'package:fl_clash/enum/enum.dart';
 import 'package:fl_clash/state.dart';
 import 'package:flutter/material.dart';
-import 'package:lpinyin/lpinyin.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,10 +21,10 @@ class AppController {
   late AppState appState;
   late Config config;
   late ClashConfig clashConfig;
-  late Measure measure;
   late Function updateClashConfigDebounce;
   late Function updateGroupDebounce;
   late Function addCheckIpNumDebounce;
+  late Function applyProfileDebounce;
 
   AppController(this.context) {
     appState = context.read<AppState>();
@@ -34,19 +33,20 @@ class AppController {
     updateClashConfigDebounce = debounce<Function()>(() async {
       await updateClashConfig();
     });
+    applyProfileDebounce = debounce<Function()>(() async {
+      await applyProfile(isPrue: true);
+    });
     addCheckIpNumDebounce = debounce(() {
       appState.checkIpNum++;
     });
     updateGroupDebounce = debounce(() async {
       await updateGroups();
     });
-    measure = Measure.of(context);
   }
 
-  Future<void> updateSystemProxy(bool isStart) async {
+  updateStatus(bool isStart) async {
     if (isStart) {
-      await globalState.startSystemProxy(
-        appState: appState,
+      await globalState.handleStart(
         config: config,
         clashConfig: clashConfig,
       );
@@ -56,10 +56,9 @@ class AppController {
         updateRunTime,
         updateTraffic,
       ];
-      if (Platform.isAndroid) return;
-      await applyProfile(isPrue: true);
+      applyProfileDebounce();
     } else {
-      await globalState.stopSystemProxy();
+      await globalState.handleStop();
       clashCore.resetTraffic();
       appState.traffics = [];
       appState.totalTraffic = Traffic();
@@ -73,8 +72,9 @@ class AppController {
   }
 
   updateRunTime() {
-    if (proxyManager.startTime != null) {
-      final startTimeStamp = proxyManager.startTime!.millisecondsSinceEpoch;
+    final startTime = globalState.startTime;
+    if (startTime != null) {
+      final startTimeStamp = startTime.millisecondsSinceEpoch;
       final nowTimeStamp = DateTime.now().millisecondsSinceEpoch;
       appState.runTime = nowTimeStamp - startTimeStamp;
     } else {
@@ -102,7 +102,8 @@ class AppController {
         final updateId = config.profiles.first.id;
         changeProfile(updateId);
       } else {
-        updateSystemProxy(false);
+        changeProfile(null);
+        updateStatus(false);
       }
     }
   }
@@ -228,7 +229,8 @@ class AppController {
   }
 
   handleExit() async {
-    await updateSystemProxy(false);
+    await updateStatus(false);
+    await proxy?.stopProxy();
     await savePreferences();
     clashCore.shutdown();
     system.exit();
@@ -297,14 +299,24 @@ class AppController {
     if (!config.silentLaunch) {
       window?.show();
     }
-    await proxyManager.updateStartTime();
-    if (proxyManager.isStart) {
-      await updateSystemProxy(true);
+    if (Platform.isAndroid) {
+      globalState.updateStartTime();
+    }
+    if (globalState.isStart) {
+      await updateStatus(true);
     } else {
-      await updateSystemProxy(config.autoRun);
+      await updateStatus(config.autoRun);
     }
     autoUpdateProfiles();
     autoCheckUpdate();
+  }
+
+  updateTray() {
+    globalState.updateTray(
+      appState: appState,
+      config: config,
+      clashConfig: clashConfig,
+    );
   }
 
   setDelay(Delay delay) {
@@ -365,6 +377,10 @@ class AppController {
     );
   }
 
+  showSnackBar(String message) {
+    globalState.showSnackBar(context, message: message);
+  }
+
   addProfileFormURL(String url) async {
     if (globalState.navigatorKey.currentState?.canPop() ?? false) {
       globalState.navigatorKey.currentState?.popUntil((route) => route.isFirst);
@@ -414,8 +430,6 @@ class AppController {
     addProfileFormURL(url);
   }
 
-  int get columns => other.getColumns(appState.viewMode, config.proxiesColumns);
-
   updateViewWidth(double width) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       appState.viewWidth = width;
@@ -426,8 +440,8 @@ class AppController {
     return List.of(proxies)
       ..sort(
         (a, b) => other.sortByChar(
-          PinyinHelper.getPinyin(a.name),
-          PinyinHelper.getPinyin(b.name),
+          other.getPinyin(a.name),
+          other.getPinyin(b.name),
         ),
       );
   }

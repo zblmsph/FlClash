@@ -8,6 +8,7 @@ import 'package:webdav_client/webdav_client.dart';
 class DAVClient {
   late Client client;
   Completer<bool> pingCompleter = Completer();
+  late String fileName;
 
   DAVClient(DAV dav) {
     client = newClient(
@@ -15,6 +16,7 @@ class DAVClient {
       user: dav.user,
       password: dav.password,
     );
+    fileName = dav.fileName;
     client.setHeaders(
       {
         'accept-charset': 'utf-8',
@@ -38,7 +40,7 @@ class DAVClient {
 
   get root => "/$appName";
 
-  get backupFile => "$root/backup.zip";
+  get backupFile => "$root/$fileName";
 
   backup(Uint8List data) async {
     await client.mkdir("$root");
@@ -47,6 +49,7 @@ class DAVClient {
   }
 
   Future<List<int>> recovery() async {
+    await client.mkdir("$root");
     final data = await client.read(backupFile);
     return data;
   }

@@ -2,15 +2,14 @@
 
 import 'dart:io';
 
+import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/common/other.dart';
 import 'package:lpinyin/lpinyin.dart';
 
 void main() {
-  print(PinyinHelper.getPinyin("ABC"));
-  print(PinyinHelper.getPinyin("阿里巴巴"));
+  final res = [1, 2, 3, 4, 5, 6,7,8,9,10,11];
 
-  print('a'.compareTo('B'));
-  print('A'.compareTo('B'));
+  print(res.batch(5));
 }
 
 startService() async {

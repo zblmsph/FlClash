@@ -458,7 +458,7 @@ abstract class _NetworkDetectionSelectorState
 mixin _$ProfilesSelectorState {
   List<Profile> get profiles => throw _privateConstructorUsedError;
   String? get currentProfileId => throw _privateConstructorUsedError;
-  ViewMode get viewMode => throw _privateConstructorUsedError;
+  int get columns => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfilesSelectorStateCopyWith<ProfilesSelectorState> get copyWith =>
@@ -471,8 +471,7 @@ abstract class $ProfilesSelectorStateCopyWith<$Res> {
           $Res Function(ProfilesSelectorState) then) =
       _$ProfilesSelectorStateCopyWithImpl<$Res, ProfilesSelectorState>;
   @useResult
-  $Res call(
-      {List<Profile> profiles, String? currentProfileId, ViewMode viewMode});
+  $Res call({List<Profile> profiles, String? currentProfileId, int columns});
 }
 
 /// @nodoc
@@ -491,7 +490,7 @@ class _$ProfilesSelectorStateCopyWithImpl<$Res,
   $Res call({
     Object? profiles = null,
     Object? currentProfileId = freezed,
-    Object? viewMode = null,
+    Object? columns = null,
   }) {
     return _then(_value.copyWith(
       profiles: null == profiles
@@ -502,10 +501,10 @@ class _$ProfilesSelectorStateCopyWithImpl<$Res,
           ? _value.currentProfileId
           : currentProfileId // ignore: cast_nullable_to_non_nullable
               as String?,
-      viewMode: null == viewMode
-          ? _value.viewMode
-          : viewMode // ignore: cast_nullable_to_non_nullable
-              as ViewMode,
+      columns: null == columns
+          ? _value.columns
+          : columns // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -519,8 +518,7 @@ abstract class _$$ProfilesSelectorStateImplCopyWith<$Res>
       __$$ProfilesSelectorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<Profile> profiles, String? currentProfileId, ViewMode viewMode});
+  $Res call({List<Profile> profiles, String? currentProfileId, int columns});
 }
 
 /// @nodoc
@@ -537,7 +535,7 @@ class __$$ProfilesSelectorStateImplCopyWithImpl<$Res>
   $Res call({
     Object? profiles = null,
     Object? currentProfileId = freezed,
-    Object? viewMode = null,
+    Object? columns = null,
   }) {
     return _then(_$ProfilesSelectorStateImpl(
       profiles: null == profiles
@@ -548,10 +546,10 @@ class __$$ProfilesSelectorStateImplCopyWithImpl<$Res>
           ? _value.currentProfileId
           : currentProfileId // ignore: cast_nullable_to_non_nullable
               as String?,
-      viewMode: null == viewMode
-          ? _value.viewMode
-          : viewMode // ignore: cast_nullable_to_non_nullable
-              as ViewMode,
+      columns: null == columns
+          ? _value.columns
+          : columns // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -562,7 +560,7 @@ class _$ProfilesSelectorStateImpl implements _ProfilesSelectorState {
   const _$ProfilesSelectorStateImpl(
       {required final List<Profile> profiles,
       required this.currentProfileId,
-      required this.viewMode})
+      required this.columns})
       : _profiles = profiles;
 
   final List<Profile> _profiles;
@@ -576,11 +574,11 @@ class _$ProfilesSelectorStateImpl implements _ProfilesSelectorState {
   @override
   final String? currentProfileId;
   @override
-  final ViewMode viewMode;
+  final int columns;
 
   @override
   String toString() {
-    return 'ProfilesSelectorState(profiles: $profiles, currentProfileId: $currentProfileId, viewMode: $viewMode)';
+    return 'ProfilesSelectorState(profiles: $profiles, currentProfileId: $currentProfileId, columns: $columns)';
   }
 
   @override
@@ -591,8 +589,7 @@ class _$ProfilesSelectorStateImpl implements _ProfilesSelectorState {
             const DeepCollectionEquality().equals(other._profiles, _profiles) &&
             (identical(other.currentProfileId, currentProfileId) ||
                 other.currentProfileId == currentProfileId) &&
-            (identical(other.viewMode, viewMode) ||
-                other.viewMode == viewMode));
+            (identical(other.columns, columns) || other.columns == columns));
   }
 
   @override
@@ -600,7 +597,7 @@ class _$ProfilesSelectorStateImpl implements _ProfilesSelectorState {
       runtimeType,
       const DeepCollectionEquality().hash(_profiles),
       currentProfileId,
-      viewMode);
+      columns);
 
   @JsonKey(ignore: true)
   @override
@@ -614,17 +611,158 @@ abstract class _ProfilesSelectorState implements ProfilesSelectorState {
   const factory _ProfilesSelectorState(
       {required final List<Profile> profiles,
       required final String? currentProfileId,
-      required final ViewMode viewMode}) = _$ProfilesSelectorStateImpl;
+      required final int columns}) = _$ProfilesSelectorStateImpl;
 
   @override
   List<Profile> get profiles;
   @override
   String? get currentProfileId;
   @override
-  ViewMode get viewMode;
+  int get columns;
   @override
   @JsonKey(ignore: true)
   _$$ProfilesSelectorStateImplCopyWith<_$ProfilesSelectorStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$NetworkDetectionState {
+  bool get isTesting => throw _privateConstructorUsedError;
+  IpInfo? get ipInfo => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $NetworkDetectionStateCopyWith<NetworkDetectionState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $NetworkDetectionStateCopyWith<$Res> {
+  factory $NetworkDetectionStateCopyWith(NetworkDetectionState value,
+          $Res Function(NetworkDetectionState) then) =
+      _$NetworkDetectionStateCopyWithImpl<$Res, NetworkDetectionState>;
+  @useResult
+  $Res call({bool isTesting, IpInfo? ipInfo});
+}
+
+/// @nodoc
+class _$NetworkDetectionStateCopyWithImpl<$Res,
+        $Val extends NetworkDetectionState>
+    implements $NetworkDetectionStateCopyWith<$Res> {
+  _$NetworkDetectionStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isTesting = null,
+    Object? ipInfo = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isTesting: null == isTesting
+          ? _value.isTesting
+          : isTesting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ipInfo: freezed == ipInfo
+          ? _value.ipInfo
+          : ipInfo // ignore: cast_nullable_to_non_nullable
+              as IpInfo?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$NetworkDetectionStateImplCopyWith<$Res>
+    implements $NetworkDetectionStateCopyWith<$Res> {
+  factory _$$NetworkDetectionStateImplCopyWith(
+          _$NetworkDetectionStateImpl value,
+          $Res Function(_$NetworkDetectionStateImpl) then) =
+      __$$NetworkDetectionStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isTesting, IpInfo? ipInfo});
+}
+
+/// @nodoc
+class __$$NetworkDetectionStateImplCopyWithImpl<$Res>
+    extends _$NetworkDetectionStateCopyWithImpl<$Res,
+        _$NetworkDetectionStateImpl>
+    implements _$$NetworkDetectionStateImplCopyWith<$Res> {
+  __$$NetworkDetectionStateImplCopyWithImpl(_$NetworkDetectionStateImpl _value,
+      $Res Function(_$NetworkDetectionStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isTesting = null,
+    Object? ipInfo = freezed,
+  }) {
+    return _then(_$NetworkDetectionStateImpl(
+      isTesting: null == isTesting
+          ? _value.isTesting
+          : isTesting // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ipInfo: freezed == ipInfo
+          ? _value.ipInfo
+          : ipInfo // ignore: cast_nullable_to_non_nullable
+              as IpInfo?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NetworkDetectionStateImpl implements _NetworkDetectionState {
+  const _$NetworkDetectionStateImpl(
+      {required this.isTesting, required this.ipInfo});
+
+  @override
+  final bool isTesting;
+  @override
+  final IpInfo? ipInfo;
+
+  @override
+  String toString() {
+    return 'NetworkDetectionState(isTesting: $isTesting, ipInfo: $ipInfo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$NetworkDetectionStateImpl &&
+            (identical(other.isTesting, isTesting) ||
+                other.isTesting == isTesting) &&
+            (identical(other.ipInfo, ipInfo) || other.ipInfo == ipInfo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isTesting, ipInfo);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NetworkDetectionStateImplCopyWith<_$NetworkDetectionStateImpl>
+      get copyWith => __$$NetworkDetectionStateImplCopyWithImpl<
+          _$NetworkDetectionStateImpl>(this, _$identity);
+}
+
+abstract class _NetworkDetectionState implements NetworkDetectionState {
+  const factory _NetworkDetectionState(
+      {required final bool isTesting,
+      required final IpInfo? ipInfo}) = _$NetworkDetectionStateImpl;
+
+  @override
+  bool get isTesting;
+  @override
+  IpInfo? get ipInfo;
+  @override
+  @JsonKey(ignore: true)
+  _$$NetworkDetectionStateImplCopyWith<_$NetworkDetectionStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -822,7 +960,9 @@ abstract class _ApplicationSelectorState implements ApplicationSelectorState {
 mixin _$TrayContainerSelectorState {
   Mode get mode => throw _privateConstructorUsedError;
   bool get autoLaunch => throw _privateConstructorUsedError;
-  bool get isRun => throw _privateConstructorUsedError;
+  bool get systemProxy => throw _privateConstructorUsedError;
+  bool get tunEnable => throw _privateConstructorUsedError;
+  bool get isStart => throw _privateConstructorUsedError;
   String? get locale => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -837,7 +977,13 @@ abstract class $TrayContainerSelectorStateCopyWith<$Res> {
       _$TrayContainerSelectorStateCopyWithImpl<$Res,
           TrayContainerSelectorState>;
   @useResult
-  $Res call({Mode mode, bool autoLaunch, bool isRun, String? locale});
+  $Res call(
+      {Mode mode,
+      bool autoLaunch,
+      bool systemProxy,
+      bool tunEnable,
+      bool isStart,
+      String? locale});
 }
 
 /// @nodoc
@@ -856,7 +1002,9 @@ class _$TrayContainerSelectorStateCopyWithImpl<$Res,
   $Res call({
     Object? mode = null,
     Object? autoLaunch = null,
-    Object? isRun = null,
+    Object? systemProxy = null,
+    Object? tunEnable = null,
+    Object? isStart = null,
     Object? locale = freezed,
   }) {
     return _then(_value.copyWith(
@@ -868,9 +1016,17 @@ class _$TrayContainerSelectorStateCopyWithImpl<$Res,
           ? _value.autoLaunch
           : autoLaunch // ignore: cast_nullable_to_non_nullable
               as bool,
-      isRun: null == isRun
-          ? _value.isRun
-          : isRun // ignore: cast_nullable_to_non_nullable
+      systemProxy: null == systemProxy
+          ? _value.systemProxy
+          : systemProxy // ignore: cast_nullable_to_non_nullable
+              as bool,
+      tunEnable: null == tunEnable
+          ? _value.tunEnable
+          : tunEnable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isStart: null == isStart
+          ? _value.isStart
+          : isStart // ignore: cast_nullable_to_non_nullable
               as bool,
       locale: freezed == locale
           ? _value.locale
@@ -889,7 +1045,13 @@ abstract class _$$TrayContainerSelectorStateImplCopyWith<$Res>
       __$$TrayContainerSelectorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Mode mode, bool autoLaunch, bool isRun, String? locale});
+  $Res call(
+      {Mode mode,
+      bool autoLaunch,
+      bool systemProxy,
+      bool tunEnable,
+      bool isStart,
+      String? locale});
 }
 
 /// @nodoc
@@ -907,7 +1069,9 @@ class __$$TrayContainerSelectorStateImplCopyWithImpl<$Res>
   $Res call({
     Object? mode = null,
     Object? autoLaunch = null,
-    Object? isRun = null,
+    Object? systemProxy = null,
+    Object? tunEnable = null,
+    Object? isStart = null,
     Object? locale = freezed,
   }) {
     return _then(_$TrayContainerSelectorStateImpl(
@@ -919,9 +1083,17 @@ class __$$TrayContainerSelectorStateImplCopyWithImpl<$Res>
           ? _value.autoLaunch
           : autoLaunch // ignore: cast_nullable_to_non_nullable
               as bool,
-      isRun: null == isRun
-          ? _value.isRun
-          : isRun // ignore: cast_nullable_to_non_nullable
+      systemProxy: null == systemProxy
+          ? _value.systemProxy
+          : systemProxy // ignore: cast_nullable_to_non_nullable
+              as bool,
+      tunEnable: null == tunEnable
+          ? _value.tunEnable
+          : tunEnable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isStart: null == isStart
+          ? _value.isStart
+          : isStart // ignore: cast_nullable_to_non_nullable
               as bool,
       locale: freezed == locale
           ? _value.locale
@@ -937,7 +1109,9 @@ class _$TrayContainerSelectorStateImpl implements _TrayContainerSelectorState {
   const _$TrayContainerSelectorStateImpl(
       {required this.mode,
       required this.autoLaunch,
-      required this.isRun,
+      required this.systemProxy,
+      required this.tunEnable,
+      required this.isStart,
       required this.locale});
 
   @override
@@ -945,13 +1119,17 @@ class _$TrayContainerSelectorStateImpl implements _TrayContainerSelectorState {
   @override
   final bool autoLaunch;
   @override
-  final bool isRun;
+  final bool systemProxy;
+  @override
+  final bool tunEnable;
+  @override
+  final bool isStart;
   @override
   final String? locale;
 
   @override
   String toString() {
-    return 'TrayContainerSelectorState(mode: $mode, autoLaunch: $autoLaunch, isRun: $isRun, locale: $locale)';
+    return 'TrayContainerSelectorState(mode: $mode, autoLaunch: $autoLaunch, systemProxy: $systemProxy, tunEnable: $tunEnable, isStart: $isStart, locale: $locale)';
   }
 
   @override
@@ -962,12 +1140,17 @@ class _$TrayContainerSelectorStateImpl implements _TrayContainerSelectorState {
             (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.autoLaunch, autoLaunch) ||
                 other.autoLaunch == autoLaunch) &&
-            (identical(other.isRun, isRun) || other.isRun == isRun) &&
+            (identical(other.systemProxy, systemProxy) ||
+                other.systemProxy == systemProxy) &&
+            (identical(other.tunEnable, tunEnable) ||
+                other.tunEnable == tunEnable) &&
+            (identical(other.isStart, isStart) || other.isStart == isStart) &&
             (identical(other.locale, locale) || other.locale == locale));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, mode, autoLaunch, isRun, locale);
+  int get hashCode => Object.hash(
+      runtimeType, mode, autoLaunch, systemProxy, tunEnable, isStart, locale);
 
   @JsonKey(ignore: true)
   @override
@@ -982,7 +1165,9 @@ abstract class _TrayContainerSelectorState
   const factory _TrayContainerSelectorState(
       {required final Mode mode,
       required final bool autoLaunch,
-      required final bool isRun,
+      required final bool systemProxy,
+      required final bool tunEnable,
+      required final bool isStart,
       required final String? locale}) = _$TrayContainerSelectorStateImpl;
 
   @override
@@ -990,7 +1175,11 @@ abstract class _TrayContainerSelectorState
   @override
   bool get autoLaunch;
   @override
-  bool get isRun;
+  bool get systemProxy;
+  @override
+  bool get tunEnable;
+  @override
+  bool get isStart;
   @override
   String? get locale;
   @override
@@ -2563,146 +2752,6 @@ abstract class _PackageListSelectorState implements PackageListSelectorState {
 }
 
 /// @nodoc
-mixin _$ColumnsSelectorState {
-  int get columns => throw _privateConstructorUsedError;
-  ViewMode get viewMode => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ColumnsSelectorStateCopyWith<ColumnsSelectorState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ColumnsSelectorStateCopyWith<$Res> {
-  factory $ColumnsSelectorStateCopyWith(ColumnsSelectorState value,
-          $Res Function(ColumnsSelectorState) then) =
-      _$ColumnsSelectorStateCopyWithImpl<$Res, ColumnsSelectorState>;
-  @useResult
-  $Res call({int columns, ViewMode viewMode});
-}
-
-/// @nodoc
-class _$ColumnsSelectorStateCopyWithImpl<$Res,
-        $Val extends ColumnsSelectorState>
-    implements $ColumnsSelectorStateCopyWith<$Res> {
-  _$ColumnsSelectorStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? columns = null,
-    Object? viewMode = null,
-  }) {
-    return _then(_value.copyWith(
-      columns: null == columns
-          ? _value.columns
-          : columns // ignore: cast_nullable_to_non_nullable
-              as int,
-      viewMode: null == viewMode
-          ? _value.viewMode
-          : viewMode // ignore: cast_nullable_to_non_nullable
-              as ViewMode,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ColumnsSelectorStateImplCopyWith<$Res>
-    implements $ColumnsSelectorStateCopyWith<$Res> {
-  factory _$$ColumnsSelectorStateImplCopyWith(_$ColumnsSelectorStateImpl value,
-          $Res Function(_$ColumnsSelectorStateImpl) then) =
-      __$$ColumnsSelectorStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int columns, ViewMode viewMode});
-}
-
-/// @nodoc
-class __$$ColumnsSelectorStateImplCopyWithImpl<$Res>
-    extends _$ColumnsSelectorStateCopyWithImpl<$Res, _$ColumnsSelectorStateImpl>
-    implements _$$ColumnsSelectorStateImplCopyWith<$Res> {
-  __$$ColumnsSelectorStateImplCopyWithImpl(_$ColumnsSelectorStateImpl _value,
-      $Res Function(_$ColumnsSelectorStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? columns = null,
-    Object? viewMode = null,
-  }) {
-    return _then(_$ColumnsSelectorStateImpl(
-      columns: null == columns
-          ? _value.columns
-          : columns // ignore: cast_nullable_to_non_nullable
-              as int,
-      viewMode: null == viewMode
-          ? _value.viewMode
-          : viewMode // ignore: cast_nullable_to_non_nullable
-              as ViewMode,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ColumnsSelectorStateImpl implements _ColumnsSelectorState {
-  const _$ColumnsSelectorStateImpl(
-      {required this.columns, required this.viewMode});
-
-  @override
-  final int columns;
-  @override
-  final ViewMode viewMode;
-
-  @override
-  String toString() {
-    return 'ColumnsSelectorState(columns: $columns, viewMode: $viewMode)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ColumnsSelectorStateImpl &&
-            (identical(other.columns, columns) || other.columns == columns) &&
-            (identical(other.viewMode, viewMode) ||
-                other.viewMode == viewMode));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, columns, viewMode);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ColumnsSelectorStateImplCopyWith<_$ColumnsSelectorStateImpl>
-      get copyWith =>
-          __$$ColumnsSelectorStateImplCopyWithImpl<_$ColumnsSelectorStateImpl>(
-              this, _$identity);
-}
-
-abstract class _ColumnsSelectorState implements ColumnsSelectorState {
-  const factory _ColumnsSelectorState(
-      {required final int columns,
-      required final ViewMode viewMode}) = _$ColumnsSelectorStateImpl;
-
-  @override
-  int get columns;
-  @override
-  ViewMode get viewMode;
-  @override
-  @JsonKey(ignore: true)
-  _$$ColumnsSelectorStateImplCopyWith<_$ColumnsSelectorStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$ProxiesListHeaderSelectorState {
   double get offset => throw _privateConstructorUsedError;
   int get currentIndex => throw _privateConstructorUsedError;
@@ -2986,5 +3035,971 @@ abstract class _ProxiesActionsState implements ProxiesActionsState {
   @override
   @JsonKey(ignore: true)
   _$$ProxiesActionsStateImplCopyWith<_$ProxiesActionsStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$AutoLaunchState {
+  bool get isAutoLaunch => throw _privateConstructorUsedError;
+  bool get isOpenTun => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $AutoLaunchStateCopyWith<AutoLaunchState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AutoLaunchStateCopyWith<$Res> {
+  factory $AutoLaunchStateCopyWith(
+          AutoLaunchState value, $Res Function(AutoLaunchState) then) =
+      _$AutoLaunchStateCopyWithImpl<$Res, AutoLaunchState>;
+  @useResult
+  $Res call({bool isAutoLaunch, bool isOpenTun});
+}
+
+/// @nodoc
+class _$AutoLaunchStateCopyWithImpl<$Res, $Val extends AutoLaunchState>
+    implements $AutoLaunchStateCopyWith<$Res> {
+  _$AutoLaunchStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isAutoLaunch = null,
+    Object? isOpenTun = null,
+  }) {
+    return _then(_value.copyWith(
+      isAutoLaunch: null == isAutoLaunch
+          ? _value.isAutoLaunch
+          : isAutoLaunch // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isOpenTun: null == isOpenTun
+          ? _value.isOpenTun
+          : isOpenTun // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AutoLaunchStateImplCopyWith<$Res>
+    implements $AutoLaunchStateCopyWith<$Res> {
+  factory _$$AutoLaunchStateImplCopyWith(_$AutoLaunchStateImpl value,
+          $Res Function(_$AutoLaunchStateImpl) then) =
+      __$$AutoLaunchStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isAutoLaunch, bool isOpenTun});
+}
+
+/// @nodoc
+class __$$AutoLaunchStateImplCopyWithImpl<$Res>
+    extends _$AutoLaunchStateCopyWithImpl<$Res, _$AutoLaunchStateImpl>
+    implements _$$AutoLaunchStateImplCopyWith<$Res> {
+  __$$AutoLaunchStateImplCopyWithImpl(
+      _$AutoLaunchStateImpl _value, $Res Function(_$AutoLaunchStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isAutoLaunch = null,
+    Object? isOpenTun = null,
+  }) {
+    return _then(_$AutoLaunchStateImpl(
+      isAutoLaunch: null == isAutoLaunch
+          ? _value.isAutoLaunch
+          : isAutoLaunch // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isOpenTun: null == isOpenTun
+          ? _value.isOpenTun
+          : isOpenTun // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AutoLaunchStateImpl implements _AutoLaunchState {
+  const _$AutoLaunchStateImpl(
+      {required this.isAutoLaunch, required this.isOpenTun});
+
+  @override
+  final bool isAutoLaunch;
+  @override
+  final bool isOpenTun;
+
+  @override
+  String toString() {
+    return 'AutoLaunchState(isAutoLaunch: $isAutoLaunch, isOpenTun: $isOpenTun)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AutoLaunchStateImpl &&
+            (identical(other.isAutoLaunch, isAutoLaunch) ||
+                other.isAutoLaunch == isAutoLaunch) &&
+            (identical(other.isOpenTun, isOpenTun) ||
+                other.isOpenTun == isOpenTun));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isAutoLaunch, isOpenTun);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AutoLaunchStateImplCopyWith<_$AutoLaunchStateImpl> get copyWith =>
+      __$$AutoLaunchStateImplCopyWithImpl<_$AutoLaunchStateImpl>(
+          this, _$identity);
+}
+
+abstract class _AutoLaunchState implements AutoLaunchState {
+  const factory _AutoLaunchState(
+      {required final bool isAutoLaunch,
+      required final bool isOpenTun}) = _$AutoLaunchStateImpl;
+
+  @override
+  bool get isAutoLaunch;
+  @override
+  bool get isOpenTun;
+  @override
+  @JsonKey(ignore: true)
+  _$$AutoLaunchStateImplCopyWith<_$AutoLaunchStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$ProxyState {
+  bool get isStart => throw _privateConstructorUsedError;
+  bool get systemProxy => throw _privateConstructorUsedError;
+  int get port => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ProxyStateCopyWith<ProxyState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProxyStateCopyWith<$Res> {
+  factory $ProxyStateCopyWith(
+          ProxyState value, $Res Function(ProxyState) then) =
+      _$ProxyStateCopyWithImpl<$Res, ProxyState>;
+  @useResult
+  $Res call({bool isStart, bool systemProxy, int port});
+}
+
+/// @nodoc
+class _$ProxyStateCopyWithImpl<$Res, $Val extends ProxyState>
+    implements $ProxyStateCopyWith<$Res> {
+  _$ProxyStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isStart = null,
+    Object? systemProxy = null,
+    Object? port = null,
+  }) {
+    return _then(_value.copyWith(
+      isStart: null == isStart
+          ? _value.isStart
+          : isStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+      systemProxy: null == systemProxy
+          ? _value.systemProxy
+          : systemProxy // ignore: cast_nullable_to_non_nullable
+              as bool,
+      port: null == port
+          ? _value.port
+          : port // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProxyStateImplCopyWith<$Res>
+    implements $ProxyStateCopyWith<$Res> {
+  factory _$$ProxyStateImplCopyWith(
+          _$ProxyStateImpl value, $Res Function(_$ProxyStateImpl) then) =
+      __$$ProxyStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isStart, bool systemProxy, int port});
+}
+
+/// @nodoc
+class __$$ProxyStateImplCopyWithImpl<$Res>
+    extends _$ProxyStateCopyWithImpl<$Res, _$ProxyStateImpl>
+    implements _$$ProxyStateImplCopyWith<$Res> {
+  __$$ProxyStateImplCopyWithImpl(
+      _$ProxyStateImpl _value, $Res Function(_$ProxyStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isStart = null,
+    Object? systemProxy = null,
+    Object? port = null,
+  }) {
+    return _then(_$ProxyStateImpl(
+      isStart: null == isStart
+          ? _value.isStart
+          : isStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+      systemProxy: null == systemProxy
+          ? _value.systemProxy
+          : systemProxy // ignore: cast_nullable_to_non_nullable
+              as bool,
+      port: null == port
+          ? _value.port
+          : port // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProxyStateImpl implements _ProxyState {
+  const _$ProxyStateImpl(
+      {required this.isStart, required this.systemProxy, required this.port});
+
+  @override
+  final bool isStart;
+  @override
+  final bool systemProxy;
+  @override
+  final int port;
+
+  @override
+  String toString() {
+    return 'ProxyState(isStart: $isStart, systemProxy: $systemProxy, port: $port)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProxyStateImpl &&
+            (identical(other.isStart, isStart) || other.isStart == isStart) &&
+            (identical(other.systemProxy, systemProxy) ||
+                other.systemProxy == systemProxy) &&
+            (identical(other.port, port) || other.port == port));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isStart, systemProxy, port);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProxyStateImplCopyWith<_$ProxyStateImpl> get copyWith =>
+      __$$ProxyStateImplCopyWithImpl<_$ProxyStateImpl>(this, _$identity);
+}
+
+abstract class _ProxyState implements ProxyState {
+  const factory _ProxyState(
+      {required final bool isStart,
+      required final bool systemProxy,
+      required final int port}) = _$ProxyStateImpl;
+
+  @override
+  bool get isStart;
+  @override
+  bool get systemProxy;
+  @override
+  int get port;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProxyStateImplCopyWith<_$ProxyStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$HttpOverridesState {
+  bool get isStart => throw _privateConstructorUsedError;
+  int get port => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HttpOverridesStateCopyWith<HttpOverridesState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HttpOverridesStateCopyWith<$Res> {
+  factory $HttpOverridesStateCopyWith(
+          HttpOverridesState value, $Res Function(HttpOverridesState) then) =
+      _$HttpOverridesStateCopyWithImpl<$Res, HttpOverridesState>;
+  @useResult
+  $Res call({bool isStart, int port});
+}
+
+/// @nodoc
+class _$HttpOverridesStateCopyWithImpl<$Res, $Val extends HttpOverridesState>
+    implements $HttpOverridesStateCopyWith<$Res> {
+  _$HttpOverridesStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isStart = null,
+    Object? port = null,
+  }) {
+    return _then(_value.copyWith(
+      isStart: null == isStart
+          ? _value.isStart
+          : isStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+      port: null == port
+          ? _value.port
+          : port // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$HttpOverridesStateImplCopyWith<$Res>
+    implements $HttpOverridesStateCopyWith<$Res> {
+  factory _$$HttpOverridesStateImplCopyWith(_$HttpOverridesStateImpl value,
+          $Res Function(_$HttpOverridesStateImpl) then) =
+      __$$HttpOverridesStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isStart, int port});
+}
+
+/// @nodoc
+class __$$HttpOverridesStateImplCopyWithImpl<$Res>
+    extends _$HttpOverridesStateCopyWithImpl<$Res, _$HttpOverridesStateImpl>
+    implements _$$HttpOverridesStateImplCopyWith<$Res> {
+  __$$HttpOverridesStateImplCopyWithImpl(_$HttpOverridesStateImpl _value,
+      $Res Function(_$HttpOverridesStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isStart = null,
+    Object? port = null,
+  }) {
+    return _then(_$HttpOverridesStateImpl(
+      isStart: null == isStart
+          ? _value.isStart
+          : isStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+      port: null == port
+          ? _value.port
+          : port // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HttpOverridesStateImpl implements _HttpOverridesState {
+  const _$HttpOverridesStateImpl({required this.isStart, required this.port});
+
+  @override
+  final bool isStart;
+  @override
+  final int port;
+
+  @override
+  String toString() {
+    return 'HttpOverridesState(isStart: $isStart, port: $port)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HttpOverridesStateImpl &&
+            (identical(other.isStart, isStart) || other.isStart == isStart) &&
+            (identical(other.port, port) || other.port == port));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isStart, port);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HttpOverridesStateImplCopyWith<_$HttpOverridesStateImpl> get copyWith =>
+      __$$HttpOverridesStateImplCopyWithImpl<_$HttpOverridesStateImpl>(
+          this, _$identity);
+}
+
+abstract class _HttpOverridesState implements HttpOverridesState {
+  const factory _HttpOverridesState(
+      {required final bool isStart,
+      required final int port}) = _$HttpOverridesStateImpl;
+
+  @override
+  bool get isStart;
+  @override
+  int get port;
+  @override
+  @JsonKey(ignore: true)
+  _$$HttpOverridesStateImplCopyWith<_$HttpOverridesStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$ClashConfigState {
+  int get mixedPort => throw _privateConstructorUsedError;
+  bool get allowLan => throw _privateConstructorUsedError;
+  bool get ipv6 => throw _privateConstructorUsedError;
+  bool get overrideDns => throw _privateConstructorUsedError;
+  String get geodataLoader => throw _privateConstructorUsedError;
+  LogLevel get logLevel => throw _privateConstructorUsedError;
+  String get externalController => throw _privateConstructorUsedError;
+  Mode get mode => throw _privateConstructorUsedError;
+  FindProcessMode get findProcessMode => throw _privateConstructorUsedError;
+  int get keepAliveInterval => throw _privateConstructorUsedError;
+  bool get unifiedDelay => throw _privateConstructorUsedError;
+  bool get tcpConcurrent => throw _privateConstructorUsedError;
+  Map<String, String> get hosts => throw _privateConstructorUsedError;
+  Tun get tun => throw _privateConstructorUsedError;
+  Dns get dns => throw _privateConstructorUsedError;
+  Map<String, String> get geoXUrl => throw _privateConstructorUsedError;
+  List<String> get rules => throw _privateConstructorUsedError;
+  String? get globalRealUa => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ClashConfigStateCopyWith<ClashConfigState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ClashConfigStateCopyWith<$Res> {
+  factory $ClashConfigStateCopyWith(
+          ClashConfigState value, $Res Function(ClashConfigState) then) =
+      _$ClashConfigStateCopyWithImpl<$Res, ClashConfigState>;
+  @useResult
+  $Res call(
+      {int mixedPort,
+      bool allowLan,
+      bool ipv6,
+      bool overrideDns,
+      String geodataLoader,
+      LogLevel logLevel,
+      String externalController,
+      Mode mode,
+      FindProcessMode findProcessMode,
+      int keepAliveInterval,
+      bool unifiedDelay,
+      bool tcpConcurrent,
+      Map<String, String> hosts,
+      Tun tun,
+      Dns dns,
+      Map<String, String> geoXUrl,
+      List<String> rules,
+      String? globalRealUa});
+
+  $TunCopyWith<$Res> get tun;
+  $DnsCopyWith<$Res> get dns;
+}
+
+/// @nodoc
+class _$ClashConfigStateCopyWithImpl<$Res, $Val extends ClashConfigState>
+    implements $ClashConfigStateCopyWith<$Res> {
+  _$ClashConfigStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mixedPort = null,
+    Object? allowLan = null,
+    Object? ipv6 = null,
+    Object? overrideDns = null,
+    Object? geodataLoader = null,
+    Object? logLevel = null,
+    Object? externalController = null,
+    Object? mode = null,
+    Object? findProcessMode = null,
+    Object? keepAliveInterval = null,
+    Object? unifiedDelay = null,
+    Object? tcpConcurrent = null,
+    Object? hosts = null,
+    Object? tun = null,
+    Object? dns = null,
+    Object? geoXUrl = null,
+    Object? rules = null,
+    Object? globalRealUa = freezed,
+  }) {
+    return _then(_value.copyWith(
+      mixedPort: null == mixedPort
+          ? _value.mixedPort
+          : mixedPort // ignore: cast_nullable_to_non_nullable
+              as int,
+      allowLan: null == allowLan
+          ? _value.allowLan
+          : allowLan // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ipv6: null == ipv6
+          ? _value.ipv6
+          : ipv6 // ignore: cast_nullable_to_non_nullable
+              as bool,
+      overrideDns: null == overrideDns
+          ? _value.overrideDns
+          : overrideDns // ignore: cast_nullable_to_non_nullable
+              as bool,
+      geodataLoader: null == geodataLoader
+          ? _value.geodataLoader
+          : geodataLoader // ignore: cast_nullable_to_non_nullable
+              as String,
+      logLevel: null == logLevel
+          ? _value.logLevel
+          : logLevel // ignore: cast_nullable_to_non_nullable
+              as LogLevel,
+      externalController: null == externalController
+          ? _value.externalController
+          : externalController // ignore: cast_nullable_to_non_nullable
+              as String,
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as Mode,
+      findProcessMode: null == findProcessMode
+          ? _value.findProcessMode
+          : findProcessMode // ignore: cast_nullable_to_non_nullable
+              as FindProcessMode,
+      keepAliveInterval: null == keepAliveInterval
+          ? _value.keepAliveInterval
+          : keepAliveInterval // ignore: cast_nullable_to_non_nullable
+              as int,
+      unifiedDelay: null == unifiedDelay
+          ? _value.unifiedDelay
+          : unifiedDelay // ignore: cast_nullable_to_non_nullable
+              as bool,
+      tcpConcurrent: null == tcpConcurrent
+          ? _value.tcpConcurrent
+          : tcpConcurrent // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hosts: null == hosts
+          ? _value.hosts
+          : hosts // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      tun: null == tun
+          ? _value.tun
+          : tun // ignore: cast_nullable_to_non_nullable
+              as Tun,
+      dns: null == dns
+          ? _value.dns
+          : dns // ignore: cast_nullable_to_non_nullable
+              as Dns,
+      geoXUrl: null == geoXUrl
+          ? _value.geoXUrl
+          : geoXUrl // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      rules: null == rules
+          ? _value.rules
+          : rules // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      globalRealUa: freezed == globalRealUa
+          ? _value.globalRealUa
+          : globalRealUa // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TunCopyWith<$Res> get tun {
+    return $TunCopyWith<$Res>(_value.tun, (value) {
+      return _then(_value.copyWith(tun: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DnsCopyWith<$Res> get dns {
+    return $DnsCopyWith<$Res>(_value.dns, (value) {
+      return _then(_value.copyWith(dns: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ClashConfigStateImplCopyWith<$Res>
+    implements $ClashConfigStateCopyWith<$Res> {
+  factory _$$ClashConfigStateImplCopyWith(_$ClashConfigStateImpl value,
+          $Res Function(_$ClashConfigStateImpl) then) =
+      __$$ClashConfigStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int mixedPort,
+      bool allowLan,
+      bool ipv6,
+      bool overrideDns,
+      String geodataLoader,
+      LogLevel logLevel,
+      String externalController,
+      Mode mode,
+      FindProcessMode findProcessMode,
+      int keepAliveInterval,
+      bool unifiedDelay,
+      bool tcpConcurrent,
+      Map<String, String> hosts,
+      Tun tun,
+      Dns dns,
+      Map<String, String> geoXUrl,
+      List<String> rules,
+      String? globalRealUa});
+
+  @override
+  $TunCopyWith<$Res> get tun;
+  @override
+  $DnsCopyWith<$Res> get dns;
+}
+
+/// @nodoc
+class __$$ClashConfigStateImplCopyWithImpl<$Res>
+    extends _$ClashConfigStateCopyWithImpl<$Res, _$ClashConfigStateImpl>
+    implements _$$ClashConfigStateImplCopyWith<$Res> {
+  __$$ClashConfigStateImplCopyWithImpl(_$ClashConfigStateImpl _value,
+      $Res Function(_$ClashConfigStateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? mixedPort = null,
+    Object? allowLan = null,
+    Object? ipv6 = null,
+    Object? overrideDns = null,
+    Object? geodataLoader = null,
+    Object? logLevel = null,
+    Object? externalController = null,
+    Object? mode = null,
+    Object? findProcessMode = null,
+    Object? keepAliveInterval = null,
+    Object? unifiedDelay = null,
+    Object? tcpConcurrent = null,
+    Object? hosts = null,
+    Object? tun = null,
+    Object? dns = null,
+    Object? geoXUrl = null,
+    Object? rules = null,
+    Object? globalRealUa = freezed,
+  }) {
+    return _then(_$ClashConfigStateImpl(
+      mixedPort: null == mixedPort
+          ? _value.mixedPort
+          : mixedPort // ignore: cast_nullable_to_non_nullable
+              as int,
+      allowLan: null == allowLan
+          ? _value.allowLan
+          : allowLan // ignore: cast_nullable_to_non_nullable
+              as bool,
+      ipv6: null == ipv6
+          ? _value.ipv6
+          : ipv6 // ignore: cast_nullable_to_non_nullable
+              as bool,
+      overrideDns: null == overrideDns
+          ? _value.overrideDns
+          : overrideDns // ignore: cast_nullable_to_non_nullable
+              as bool,
+      geodataLoader: null == geodataLoader
+          ? _value.geodataLoader
+          : geodataLoader // ignore: cast_nullable_to_non_nullable
+              as String,
+      logLevel: null == logLevel
+          ? _value.logLevel
+          : logLevel // ignore: cast_nullable_to_non_nullable
+              as LogLevel,
+      externalController: null == externalController
+          ? _value.externalController
+          : externalController // ignore: cast_nullable_to_non_nullable
+              as String,
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as Mode,
+      findProcessMode: null == findProcessMode
+          ? _value.findProcessMode
+          : findProcessMode // ignore: cast_nullable_to_non_nullable
+              as FindProcessMode,
+      keepAliveInterval: null == keepAliveInterval
+          ? _value.keepAliveInterval
+          : keepAliveInterval // ignore: cast_nullable_to_non_nullable
+              as int,
+      unifiedDelay: null == unifiedDelay
+          ? _value.unifiedDelay
+          : unifiedDelay // ignore: cast_nullable_to_non_nullable
+              as bool,
+      tcpConcurrent: null == tcpConcurrent
+          ? _value.tcpConcurrent
+          : tcpConcurrent // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hosts: null == hosts
+          ? _value._hosts
+          : hosts // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      tun: null == tun
+          ? _value.tun
+          : tun // ignore: cast_nullable_to_non_nullable
+              as Tun,
+      dns: null == dns
+          ? _value.dns
+          : dns // ignore: cast_nullable_to_non_nullable
+              as Dns,
+      geoXUrl: null == geoXUrl
+          ? _value._geoXUrl
+          : geoXUrl // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      rules: null == rules
+          ? _value._rules
+          : rules // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      globalRealUa: freezed == globalRealUa
+          ? _value.globalRealUa
+          : globalRealUa // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ClashConfigStateImpl implements _ClashConfigState {
+  const _$ClashConfigStateImpl(
+      {required this.mixedPort,
+      required this.allowLan,
+      required this.ipv6,
+      required this.overrideDns,
+      required this.geodataLoader,
+      required this.logLevel,
+      required this.externalController,
+      required this.mode,
+      required this.findProcessMode,
+      required this.keepAliveInterval,
+      required this.unifiedDelay,
+      required this.tcpConcurrent,
+      required final Map<String, String> hosts,
+      required this.tun,
+      required this.dns,
+      required final Map<String, String> geoXUrl,
+      required final List<String> rules,
+      required this.globalRealUa})
+      : _hosts = hosts,
+        _geoXUrl = geoXUrl,
+        _rules = rules;
+
+  @override
+  final int mixedPort;
+  @override
+  final bool allowLan;
+  @override
+  final bool ipv6;
+  @override
+  final bool overrideDns;
+  @override
+  final String geodataLoader;
+  @override
+  final LogLevel logLevel;
+  @override
+  final String externalController;
+  @override
+  final Mode mode;
+  @override
+  final FindProcessMode findProcessMode;
+  @override
+  final int keepAliveInterval;
+  @override
+  final bool unifiedDelay;
+  @override
+  final bool tcpConcurrent;
+  final Map<String, String> _hosts;
+  @override
+  Map<String, String> get hosts {
+    if (_hosts is EqualUnmodifiableMapView) return _hosts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_hosts);
+  }
+
+  @override
+  final Tun tun;
+  @override
+  final Dns dns;
+  final Map<String, String> _geoXUrl;
+  @override
+  Map<String, String> get geoXUrl {
+    if (_geoXUrl is EqualUnmodifiableMapView) return _geoXUrl;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_geoXUrl);
+  }
+
+  final List<String> _rules;
+  @override
+  List<String> get rules {
+    if (_rules is EqualUnmodifiableListView) return _rules;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_rules);
+  }
+
+  @override
+  final String? globalRealUa;
+
+  @override
+  String toString() {
+    return 'ClashConfigState(mixedPort: $mixedPort, allowLan: $allowLan, ipv6: $ipv6, overrideDns: $overrideDns, geodataLoader: $geodataLoader, logLevel: $logLevel, externalController: $externalController, mode: $mode, findProcessMode: $findProcessMode, keepAliveInterval: $keepAliveInterval, unifiedDelay: $unifiedDelay, tcpConcurrent: $tcpConcurrent, hosts: $hosts, tun: $tun, dns: $dns, geoXUrl: $geoXUrl, rules: $rules, globalRealUa: $globalRealUa)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClashConfigStateImpl &&
+            (identical(other.mixedPort, mixedPort) ||
+                other.mixedPort == mixedPort) &&
+            (identical(other.allowLan, allowLan) ||
+                other.allowLan == allowLan) &&
+            (identical(other.ipv6, ipv6) || other.ipv6 == ipv6) &&
+            (identical(other.overrideDns, overrideDns) ||
+                other.overrideDns == overrideDns) &&
+            (identical(other.geodataLoader, geodataLoader) ||
+                other.geodataLoader == geodataLoader) &&
+            (identical(other.logLevel, logLevel) ||
+                other.logLevel == logLevel) &&
+            (identical(other.externalController, externalController) ||
+                other.externalController == externalController) &&
+            (identical(other.mode, mode) || other.mode == mode) &&
+            (identical(other.findProcessMode, findProcessMode) ||
+                other.findProcessMode == findProcessMode) &&
+            (identical(other.keepAliveInterval, keepAliveInterval) ||
+                other.keepAliveInterval == keepAliveInterval) &&
+            (identical(other.unifiedDelay, unifiedDelay) ||
+                other.unifiedDelay == unifiedDelay) &&
+            (identical(other.tcpConcurrent, tcpConcurrent) ||
+                other.tcpConcurrent == tcpConcurrent) &&
+            const DeepCollectionEquality().equals(other._hosts, _hosts) &&
+            (identical(other.tun, tun) || other.tun == tun) &&
+            (identical(other.dns, dns) || other.dns == dns) &&
+            const DeepCollectionEquality().equals(other._geoXUrl, _geoXUrl) &&
+            const DeepCollectionEquality().equals(other._rules, _rules) &&
+            (identical(other.globalRealUa, globalRealUa) ||
+                other.globalRealUa == globalRealUa));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      mixedPort,
+      allowLan,
+      ipv6,
+      overrideDns,
+      geodataLoader,
+      logLevel,
+      externalController,
+      mode,
+      findProcessMode,
+      keepAliveInterval,
+      unifiedDelay,
+      tcpConcurrent,
+      const DeepCollectionEquality().hash(_hosts),
+      tun,
+      dns,
+      const DeepCollectionEquality().hash(_geoXUrl),
+      const DeepCollectionEquality().hash(_rules),
+      globalRealUa);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClashConfigStateImplCopyWith<_$ClashConfigStateImpl> get copyWith =>
+      __$$ClashConfigStateImplCopyWithImpl<_$ClashConfigStateImpl>(
+          this, _$identity);
+}
+
+abstract class _ClashConfigState implements ClashConfigState {
+  const factory _ClashConfigState(
+      {required final int mixedPort,
+      required final bool allowLan,
+      required final bool ipv6,
+      required final bool overrideDns,
+      required final String geodataLoader,
+      required final LogLevel logLevel,
+      required final String externalController,
+      required final Mode mode,
+      required final FindProcessMode findProcessMode,
+      required final int keepAliveInterval,
+      required final bool unifiedDelay,
+      required final bool tcpConcurrent,
+      required final Map<String, String> hosts,
+      required final Tun tun,
+      required final Dns dns,
+      required final Map<String, String> geoXUrl,
+      required final List<String> rules,
+      required final String? globalRealUa}) = _$ClashConfigStateImpl;
+
+  @override
+  int get mixedPort;
+  @override
+  bool get allowLan;
+  @override
+  bool get ipv6;
+  @override
+  bool get overrideDns;
+  @override
+  String get geodataLoader;
+  @override
+  LogLevel get logLevel;
+  @override
+  String get externalController;
+  @override
+  Mode get mode;
+  @override
+  FindProcessMode get findProcessMode;
+  @override
+  int get keepAliveInterval;
+  @override
+  bool get unifiedDelay;
+  @override
+  bool get tcpConcurrent;
+  @override
+  Map<String, String> get hosts;
+  @override
+  Tun get tun;
+  @override
+  Dns get dns;
+  @override
+  Map<String, String> get geoXUrl;
+  @override
+  List<String> get rules;
+  @override
+  String? get globalRealUa;
+  @override
+  @JsonKey(ignore: true)
+  _$$ClashConfigStateImplCopyWith<_$ClashConfigStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

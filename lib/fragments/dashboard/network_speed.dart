@@ -59,7 +59,7 @@ class _NetworkSpeedState extends State<NetworkSpeed> {
       style: bodyMedium,
       maxLines: 1,
     );
-    final size = globalState.appController.measure.computeTextSize(valueText);
+    final size = globalState.measure.computeTextSize(valueText);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,7 +114,7 @@ class _NetworkSpeedState extends State<NetworkSpeed> {
       onPressed: () {},
       info: Info(
         label: appLocalizations.networkSpeed,
-        iconData: Icons.speed,
+        iconData: Icons.speed_sharp,
       ),
       child: Selector<AppState, List<Traffic>>(
         selector: (_, appState) => appState.traffics,

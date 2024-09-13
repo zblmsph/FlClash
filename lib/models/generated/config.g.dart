@@ -23,6 +23,9 @@ Config _$ConfigFromJson(Map<String, dynamic> json) => Config()
   ..proxiesSortType =
       $enumDecodeNullable(_$ProxiesSortTypeEnumMap, json['proxiesSortType']) ??
           ProxiesSortType.none
+  ..proxiesLayout =
+      $enumDecodeNullable(_$ProxiesLayoutEnumMap, json['proxiesLayout']) ??
+          ProxiesLayout.standard
   ..isMinimizeOnExit = json['isMinimizeOnExit'] as bool? ?? true
   ..isAccessControl = json['isAccessControl'] as bool? ?? false
   ..accessControl =
@@ -33,8 +36,6 @@ Config _$ConfigFromJson(Map<String, dynamic> json) => Config()
   ..isAnimateToPage = json['isAnimateToPage'] as bool? ?? true
   ..isCompatible = json['isCompatible'] as bool? ?? true
   ..autoCheckUpdate = json['autoCheckUpdate'] as bool? ?? true
-  ..allowBypass = json['allowBypass'] as bool? ?? true
-  ..systemProxy = json['systemProxy'] as bool? ?? false
   ..onlyProxy = json['onlyProxy'] as bool? ?? false
   ..prueBlack = json['prueBlack'] as bool? ?? false
   ..isCloseConnections = json['isCloseConnections'] as bool? ?? false
@@ -44,12 +45,18 @@ Config _$ConfigFromJson(Map<String, dynamic> json) => Config()
   ..proxyCardType =
       $enumDecodeNullable(_$ProxyCardTypeEnumMap, json['proxyCardType']) ??
           ProxyCardType.expand
-  ..proxiesColumns = (json['proxiesColumns'] as num?)?.toInt() ?? 2
   ..testUrl =
       json['test-url'] as String? ?? 'https://www.gstatic.com/generate_204'
   ..isExclude = json['isExclude'] as bool? ?? false
   ..windowProps =
-      WindowProps.fromJson(json['windowProps'] as Map<String, dynamic>?);
+      WindowProps.fromJson(json['windowProps'] as Map<String, dynamic>?)
+  ..vpnProps = VpnProps.fromJson(json['vpnProps'] as Map<String, dynamic>?)
+  ..desktopProps =
+      DesktopProps.fromJson(json['desktopProps'] as Map<String, dynamic>?)
+  ..scaleProps =
+      ScaleProps.fromJson(json['scaleProps'] as Map<String, dynamic>?)
+  ..showLabel = json['showLabel'] as bool? ?? false
+  ..overrideDns = json['overrideDns'] as bool? ?? false;
 
 Map<String, dynamic> _$ConfigToJson(Config instance) => <String, dynamic>{
       'profiles': instance.profiles,
@@ -62,6 +69,7 @@ Map<String, dynamic> _$ConfigToJson(Config instance) => <String, dynamic>{
       'locale': instance.locale,
       'primaryColor': instance.primaryColor,
       'proxiesSortType': _$ProxiesSortTypeEnumMap[instance.proxiesSortType]!,
+      'proxiesLayout': _$ProxiesLayoutEnumMap[instance.proxiesLayout]!,
       'isMinimizeOnExit': instance.isMinimizeOnExit,
       'isAccessControl': instance.isAccessControl,
       'accessControl': instance.accessControl,
@@ -69,17 +77,19 @@ Map<String, dynamic> _$ConfigToJson(Config instance) => <String, dynamic>{
       'isAnimateToPage': instance.isAnimateToPage,
       'isCompatible': instance.isCompatible,
       'autoCheckUpdate': instance.autoCheckUpdate,
-      'allowBypass': instance.allowBypass,
-      'systemProxy': instance.systemProxy,
       'onlyProxy': instance.onlyProxy,
       'prueBlack': instance.prueBlack,
       'isCloseConnections': instance.isCloseConnections,
       'proxiesType': _$ProxiesTypeEnumMap[instance.proxiesType]!,
       'proxyCardType': _$ProxyCardTypeEnumMap[instance.proxyCardType]!,
-      'proxiesColumns': instance.proxiesColumns,
       'test-url': instance.testUrl,
       'isExclude': instance.isExclude,
       'windowProps': instance.windowProps,
+      'vpnProps': instance.vpnProps,
+      'desktopProps': instance.desktopProps,
+      'scaleProps': instance.scaleProps,
+      'showLabel': instance.showLabel,
+      'overrideDns': instance.overrideDns,
     };
 
 const _$ThemeModeEnumMap = {
@@ -92,6 +102,12 @@ const _$ProxiesSortTypeEnumMap = {
   ProxiesSortType.none: 'none',
   ProxiesSortType.delay: 'delay',
   ProxiesSortType.name: 'name',
+};
+
+const _$ProxiesLayoutEnumMap = {
+  ProxiesLayout.loose: 'loose',
+  ProxiesLayout.standard: 'standard',
+  ProxiesLayout.tight: 'tight',
 };
 
 const _$ProxiesTypeEnumMap = {
@@ -149,6 +165,7 @@ _$CoreStateImpl _$$CoreStateImplFromJson(Map<String, dynamic> json) =>
           : AccessControl.fromJson(
               json['accessControl'] as Map<String, dynamic>),
       currentProfileName: json['currentProfileName'] as String,
+      enable: json['enable'] as bool,
       allowBypass: json['allowBypass'] as bool,
       systemProxy: json['systemProxy'] as bool,
       mixedPort: (json['mixedPort'] as num).toInt(),
@@ -159,10 +176,26 @@ Map<String, dynamic> _$$CoreStateImplToJson(_$CoreStateImpl instance) =>
     <String, dynamic>{
       'accessControl': instance.accessControl,
       'currentProfileName': instance.currentProfileName,
+      'enable': instance.enable,
       'allowBypass': instance.allowBypass,
       'systemProxy': instance.systemProxy,
       'mixedPort': instance.mixedPort,
       'onlyProxy': instance.onlyProxy,
+    };
+
+_$VPNStateImpl _$$VPNStateImplFromJson(Map<String, dynamic> json) =>
+    _$VPNStateImpl(
+      accessControl: json['accessControl'] == null
+          ? null
+          : AccessControl.fromJson(
+              json['accessControl'] as Map<String, dynamic>),
+      vpnProps: VpnProps.fromJson(json['vpnProps'] as Map<String, dynamic>?),
+    );
+
+Map<String, dynamic> _$$VPNStateImplToJson(_$VPNStateImpl instance) =>
+    <String, dynamic>{
+      'accessControl': instance.accessControl,
+      'vpnProps': instance.vpnProps,
     };
 
 _$WindowPropsImpl _$$WindowPropsImplFromJson(Map<String, dynamic> json) =>
@@ -179,4 +212,40 @@ Map<String, dynamic> _$$WindowPropsImplToJson(_$WindowPropsImpl instance) =>
       'height': instance.height,
       'top': instance.top,
       'left': instance.left,
+    };
+
+_$VpnPropsImpl _$$VpnPropsImplFromJson(Map<String, dynamic> json) =>
+    _$VpnPropsImpl(
+      enable: json['enable'] as bool? ?? true,
+      systemProxy: json['systemProxy'] as bool? ?? false,
+      allowBypass: json['allowBypass'] as bool? ?? true,
+    );
+
+Map<String, dynamic> _$$VpnPropsImplToJson(_$VpnPropsImpl instance) =>
+    <String, dynamic>{
+      'enable': instance.enable,
+      'systemProxy': instance.systemProxy,
+      'allowBypass': instance.allowBypass,
+    };
+
+_$DesktopPropsImpl _$$DesktopPropsImplFromJson(Map<String, dynamic> json) =>
+    _$DesktopPropsImpl(
+      systemProxy: json['systemProxy'] as bool? ?? true,
+    );
+
+Map<String, dynamic> _$$DesktopPropsImplToJson(_$DesktopPropsImpl instance) =>
+    <String, dynamic>{
+      'systemProxy': instance.systemProxy,
+    };
+
+_$ScalePropsImpl _$$ScalePropsImplFromJson(Map<String, dynamic> json) =>
+    _$ScalePropsImpl(
+      custom: json['custom'] as bool? ?? false,
+      scale: (json['scale'] as num?)?.toDouble() ?? defaultCustomFontSizeScale,
+    );
+
+Map<String, dynamic> _$$ScalePropsImplToJson(_$ScalePropsImpl instance) =>
+    <String, dynamic>{
+      'custom': instance.custom,
+      'scale': instance.scale,
     };

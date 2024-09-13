@@ -23,7 +23,7 @@ class ProxyCard extends StatelessWidget {
     required this.type,
   });
 
-  Measure get measure => globalState.appController.measure;
+  Measure get measure => globalState.measure;
 
   Widget _buildDelayText() {
     return SizedBox(
@@ -69,23 +69,21 @@ class ProxyCard extends StatelessWidget {
     if (type == ProxyCardType.min) {
       return SizedBox(
         height: measure.bodyMediumHeight * 1,
-        child: Text(
+        child: EmojiText(
           proxy.name,
           maxLines: 1,
-          style: context.textTheme.bodyMedium?.copyWith(
-            overflow: TextOverflow.ellipsis,
-          ),
+          overflow: TextOverflow.ellipsis,
+          style: context.textTheme.bodyMedium,
         ),
       );
     } else {
       return SizedBox(
         height: measure.bodyMediumHeight * 2,
-        child: Text(
+        child: EmojiText(
           proxy.name,
           maxLines: 2,
-          style: context.textTheme.bodyMedium?.copyWith(
-            overflow: TextOverflow.ellipsis,
-          ),
+          overflow: TextOverflow.ellipsis,
+          style: context.textTheme.bodyMedium,
         ),
       );
     }
@@ -121,7 +119,7 @@ class ProxyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final measure = globalState.appController.measure;
+    final measure = globalState.measure;
     final delayText = _buildDelayText();
     final proxyNameText = _buildProxyNameText(context);
     return currentGroupProxyNameBuilder(
@@ -155,14 +153,12 @@ class ProxyCard extends StatelessWidget {
                             proxy.name,
                           ),
                           builder: (_, desc, __) {
-                            return TooltipText(
-                              text: Text(
-                                desc,
-                                style: context.textTheme.bodySmall?.copyWith(
-                                  overflow: TextOverflow.ellipsis,
-                                  color: context.textTheme.bodySmall?.color
-                                      ?.toLight(),
-                                ),
+                            return EmojiText(
+                              desc,
+                              overflow: TextOverflow.ellipsis,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                color: context.textTheme.bodySmall?.color
+                                    ?.toLight(),
                               ),
                             );
                           },

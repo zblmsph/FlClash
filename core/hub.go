@@ -5,13 +5,21 @@ package main
 */
 import "C"
 import (
+	"context"
 	bridge "core/dart-bridge"
 	"encoding/json"
 	"fmt"
+	"github.com/metacubex/mihomo/common/utils"
+	"os"
+	"runtime"
+	"sort"
+	"sync"
+	"time"
+	"unsafe"
+
 	"github.com/metacubex/mihomo/adapter"
 	"github.com/metacubex/mihomo/adapter/outboundgroup"
 	"github.com/metacubex/mihomo/adapter/provider"
-	"github.com/metacubex/mihomo/common/utils"
 	"github.com/metacubex/mihomo/component/updater"
 	"github.com/metacubex/mihomo/config"
 	"github.com/metacubex/mihomo/constant"
@@ -20,21 +28,32 @@ import (
 	"github.com/metacubex/mihomo/log"
 	"github.com/metacubex/mihomo/tunnel"
 	"github.com/metacubex/mihomo/tunnel/statistic"
-	"golang.org/x/net/context"
-	"os"
-	"runtime"
-	"sort"
-	"time"
-	"unsafe"
 )
 
-var currentConfig = config.DefaultRawConfig()
+var currentRawConfig = config.DefaultRawConfig()
 
 var configParams = ConfigExtendedParams{}
 
 var externalProviders = map[string]cp.Provider{}
 
 var isInit = false
+
+//export start
+func start() {
+	runLock.Lock()
+	defer runLock.Unlock()
+	isRunning = true
+}
+
+//export stop
+func stop() {
+	runLock.Lock()
+	go func() {
+		defer runLock.Unlock()
+		isRunning = false
+		stopListeners()
+	}()
+}
 
 //export initClash
 func initClash(homeDirStr *C.char) bool {
@@ -59,10 +78,10 @@ func restartClash() bool {
 
 //export shutdownClash
 func shutdownClash() bool {
+	stopListeners()
 	executor.Shutdown()
 	runtime.GC()
 	isInit = false
-	currentConfig = nil
 	return true
 }
 
@@ -88,11 +107,15 @@ func validateConfig(s *C.char, port C.longlong) {
 	}()
 }
 
+var updateLock sync.Mutex
+
 //export updateConfig
 func updateConfig(s *C.char, port C.longlong) {
 	i := int64(port)
 	paramsString := C.GoString(s)
 	go func() {
+		updateLock.Lock()
+		defer updateLock.Unlock()
 		var params = &GenerateConfigParams{}
 		err := json.Unmarshal([]byte(paramsString), params)
 		if err != nil {
@@ -101,7 +124,7 @@ func updateConfig(s *C.char, port C.longlong) {
 		}
 		configParams = params.Params
 		prof := decorationConfig(params.ProfileId, params.Config)
-		currentConfig = prof
+		currentRawConfig = prof
 		err = applyConfig()
 		if err != nil {
 			bridge.SendToPort(i, err.Error())
@@ -202,11 +225,13 @@ func asyncTestDelay(s *C.char, port C.longlong) {
 		var params = &TestDelayParams{}
 		err := json.Unmarshal([]byte(paramsString), params)
 		if err != nil {
+			bridge.SendToPort(i, "")
 			return false, nil
 		}
 
 		expectedStatus, err := utils.NewUnsignedRanges[uint16]("")
 		if err != nil {
+			bridge.SendToPort(i, "")
 			return false, nil
 		}
 
